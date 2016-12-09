@@ -49,6 +49,8 @@ lmtp      unix  -       -       n       -       -       lmtp
 anvil     unix  -       -       -       -       1       anvil
 scache    unix  -       -       -       -       1       scache
 
+policy-spf  unix  -       n       n       -       -       spawn user=nobody argv=/usr/bin/policyd-spf
+
 maildrop  unix  -       n       n       -       -       pipe
   flags=DRhu user=vmail argv=/usr/bin/maildrop -d ${recipient}
 uucp      unix  -       n       n       -       -       pipe

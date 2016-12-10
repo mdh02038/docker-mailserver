@@ -39,6 +39,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -q --fix-missing && \
     rsyslog \
     sasl2-bin \
     spamassassin \
+    postfix-policyd-spf-python \
     unzip \
     && \
   curl -sk http://neuro.debian.net/lists/trusty.de-m.libre > /etc/apt/sources.list.d/neurodebian.sources.list && \

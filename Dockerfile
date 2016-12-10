@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+ROM ubuntu:14.04
 MAINTAINER Thomas VIAL
 
 # Packages
@@ -39,6 +39,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -q --fix-missing && \
     rsyslog \
     sasl2-bin \
     spamassassin \
+    spamc \
     postfix-policyd-spf-python \
     unzip \
     && \
@@ -132,4 +133,11 @@ CMD /usr/local/bin/start-mailserver.sh
 
 ADD target/filebeat.yml.tmpl /etc/filebeat/filebeat.yml.tmpl
 
+RUN groupadd spamd && \
+  useradd -g spamd -s /bin/false -d /var/log/spamassassin spamd && \
+  mkdir /var/log/spamassassin && \
+  chown spamd:spamd /var/log/spamassassin
+
+COPY config/spamassassin.cf /etc/default/spamassassin
+COPY config/local.cf /etc/spamassassin/local.cf
 

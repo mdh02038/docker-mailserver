@@ -522,5 +522,8 @@ if [ "$SMTP_ONLY" != 1 -a "$ENABLE_LDAP" != 1 ]; then
   /usr/sbin/dovecot user '*'
 fi
 
+/etc/init.d/spamassasin start
+
 echo "Starting..."
 tail -f /var/log/mail/mail.log
+
